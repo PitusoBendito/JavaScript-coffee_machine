@@ -1,0 +1,90 @@
+const input = require('sync-input');
+
+let water = 400;
+let milk = 540;
+let beans = 120;
+let cups = 9;
+let money = 550;
+
+console.log(contents(water, milk, beans, cups, money));
+
+console.log("Write action (buy, fill, take): ");
+let answer = input();
+switch(answer){
+  case "buy":
+    buy(water, milk, beans, cups, money);
+    break;
+  case "fill":
+    fill(water, milk, beans, cups, money);
+    break;
+  case "take":
+    take(water, milk, beans, cups, money);
+    break;
+  default:
+    break;
+}
+
+function contents(water, milk, beans, cups, money){
+return (`The coffee machine has:
+${water} ml of water
+${milk} ml of milk
+${beans} g of coffee beans
+${cups} disposable cups
+$${money} of money
+`);
+}
+
+function buy(water, milk, beans, cups, money){
+  console.log("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
+  let buyOption = input();
+  console.log("")
+    switch(buyOption){
+      case "1":
+        water -= 250;
+        beans -= 16;
+        money += 4;
+        cups--;
+        break;
+      case "2":
+        water -= 350;
+        milk -= 75;
+        beans -= 20;
+        money += 7;
+        cups--;
+        break;
+      case "3":
+        water -= 200;
+        milk -= 100;
+        beans -= 12;
+        money += 6;
+        cups--;
+        break;
+      default: 
+        break;
+  }
+  console.log(contents(water, milk, beans, cups, money));
+}
+
+function fill(water, milk, beans, cups, money){
+  console.log("Write how many ml of water you want to add: ");
+  let addWater = parseInt(input(), 10);
+  water += addWater;
+  console.log("Write how many ml of milk you want to add: ");
+  let addMilk = parseInt(input(), 10);
+  milk += addMilk;
+  console.log("Write how many grams of coffee beans you want to add: ");
+  let addBeans = parseInt(input(), 10);
+  beans += addBeans;
+  console.log("Write how many disposable cups you want to add: ");
+  let addCups = parseInt(input(), 10);
+  cups += addCups;
+  
+  console.log(contents(water, milk, beans, cups, money));
+}
+
+function take(water, milk, beans, cups, money) {
+  console.log("I gave you $" + money);
+  money = 0;
+  
+  console.log(contents(water, milk, beans, cups, money));
+}
