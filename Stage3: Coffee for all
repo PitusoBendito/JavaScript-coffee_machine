@@ -1,0 +1,27 @@
+const input = require('sync-input');
+
+console.log("Write how many ml of water the coffee machine has:");
+let water = input();
+console.log("Write how many ml of milk the coffee machine has:");
+let milk = input();
+console.log("Write how many grams of coffee beans the coffee machine has:");
+let beans = input();
+console.log("Write how many cups of coffee you will need:");
+let cups = input();
+
+let totalCups = 0;
+while(water >= 200 && milk >= 50 && beans >= 15) {
+  water -= 200;
+  milk -= 50;
+  beans -= 15;
+  totalCups++;
+}
+
+if(cups == totalCups) {
+  console.log("Yes, I can make that amount of coffee");
+} else if (cups < totalCups) {
+  totalCups--;
+  console.log("Yes, I can make that amount of coffee (and even " + totalCups + " more than that)");
+} else {
+  console.log("No, I can make only " + totalCups + " cups of coffee");
+}
